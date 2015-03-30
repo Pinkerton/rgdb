@@ -1,5 +1,5 @@
 # rgdb
-Seamless remote debugging with gdb for CS 225 :+1:
+Seamless remote debugging with gdb for CS 225
 
 ##:star: tl;dr##
 Sometimes the verison of gdb shipped with OSX isn't very helpful, and manually committing and pushing code to school workstations is slow. So, this script does it for you.
@@ -8,7 +8,9 @@ There's a couple ways to run this script. The easiest is probably to copy `rgdb.
 
 Then, run gdb remotely with some variation of `python rgdb.py mp5` or `rgdb.py mp5`. It'll commit your code and launch an ssh session that pulls the most recent version, makes it, and starts gdb.
 
-You'll probably only find this useful if you like developing locally, but it's been pretty useful for debugging my segfault-ridden code.
+You'll probably only find this useful if you like developing locally, but it's for debugging my segfault-ridden code.
+
+**Known issue:** exiting out of the remote gdb session is a bit of a pain. This could probably be solved in code, but **CTRL+D** twice works well enough.
 
 ##Configuration##
 
@@ -44,7 +46,7 @@ Program received signal SIGSEGV, Segmentation fault.
 #3  0x0000000000000000 in ?? ()
 ```
 
-:anguished: Super helpful, right? So you `svn commit` and log into EWS.  `cd ~/Documents/cs225/mp5` and `svn up; make; gdb mp5` and you're finally up and running on a real Linux system. 
+:anguished: Not super helpful, right? So you `svn commit` and log into EWS.  `cd ~/Documents/cs225/mp5` and `svn up; make; gdb mp5` and you're finally up and running on a real Linux system. On there, gdb looks something like this:
 
 ```
 [ssh@ews mp5]$ gdb mp5
@@ -70,7 +72,7 @@ Program received signal SIGSEGV, Segmentation fault.
 [...]
 ```
 
-:bulb: Way more useful, right? Turns out something in Quadtree::buildTree is causing a segfault. Thanks, gdb :heart:
+:bulb: Yay! Turns out something in Quadtree::buildTree is causing a segfault. Back to work...
 
 ## Licence, etc.##
 The license is some variation of GPL (check the LICENSE file). It's because of the code I stole from the paramiko project for interactive SSH sessions. 
