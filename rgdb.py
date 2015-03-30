@@ -32,6 +32,8 @@ import time
 import paramiko
 from paramiko.py3compat import u
 
+EWS_PATH = "~/Documents/cs225" # tilde okay, no trailing / !!!
+
 # windows does not have termios...
 try:
     import termios
@@ -144,7 +146,7 @@ if __name__ == "__main__":
         client.connect(**cfg)
         remote_shell = client.invoke_shell()
         mp_name = sys.argv[1]
-        cmds = ["cd ~/Documents/cs225/%s" % (mp_name), "svn up", "make", "gdb %s" % (mp_name)]
+        cmds = ["cd %s/%s" % (EWS_PATH, mp_name), "svn up", "make", "gdb %s" % (mp_name)]
         for cmd in cmds:
             remote_shell.send(cmd + "\n")
                 
