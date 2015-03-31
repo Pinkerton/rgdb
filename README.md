@@ -1,6 +1,8 @@
 # rgdb
 :star: Seamless remote debugging with gdb for CS 225
 
+*I know this README looks super long, but it tries to explains everything.*
+
 ##Description##
 Sometimes the verison of gdb shipped with OSX isn't very helpful, and manually committing and pushing code to school workstations is slow. So, this script does it for you.
 
@@ -23,7 +25,14 @@ Host ews
 ```
 [This guide](http://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/) explains how to set up password-less ssh authentication on OSX.
 
-Also, change `EWS_PATH` and in `rgdb.py` to reflect where your `cs225` directory lives on EWS. By default, it's `~/Documents/cs225`. If you have a pre-existing SSH alias, also be sure to update `SSH_ALIAS`.
+Also, change `EWS_PATH` and in `rgdb.py` to reflect where your `cs225` directory lives on EWS. By default, it's `~/Documents/cs225`. 
+
+If you have a pre-existing SSH alias, also be sure to update `SSH_ALIAS`. If your current alias doesn't work with this script, take a look at line ~136 of `rgdb.py` because it looks something like:
+
+```python
+cfg = {'hostname': options['hostname'], 'username': options["user"]}
+```
+You should try changing `options["user"]` to `options["username"]` (depending on how you set up your SSH alias).
 
 ##Details##
 
@@ -72,7 +81,18 @@ Program received signal SIGSEGV, Segmentation fault.
 [...]
 ```
 
-:bulb: Yay! Turns out something in Quadtree::buildTree is causing a segfault. Back to work...
+:bulb: Yay! Turns out something in Quadtree::buildTree is causing a segfault. To learn more about using gdb, reference your nearest search engine. 
+
+##To-do##
+Low-pri, PRs welcome!
+
+ - Colored output, including steps of execution (committing, pulling, making) enabled optionally with -v. 
+ - Multiple threads, to split up local file operations and connecting over SSH.
+ - If adding more command line arguments, substitute a legit arg parser.
+ - Squelch ugly output (commands appearing in the terminal before you've fully connected).
+ - Check and provide Windows support (might already work).
+ - Make available more conveniently, ie as a package.
+ - Clean up the code structurally and obey PEP8 (I'm usually *that* guy, but I'm pretty sure no one's actually going to read this).
 
 ## Licence, etc.##
 The license is some variation of GPL (check the LICENSE file). It's because of the code I stole from the paramiko project for interactive SSH sessions. 
