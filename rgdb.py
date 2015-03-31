@@ -32,7 +32,9 @@ import time
 import paramiko
 from paramiko.py3compat import u
 
+# UPDATE THESE VARIABLES TO MATCH YOUR CONFIGURATION
 EWS_PATH = "~/Documents/cs225" # tilde okay, no trailing / !!!
+SSH_ALIAS = "ews"
 
 # windows does not have termios...
 try:
@@ -130,7 +132,7 @@ if __name__ == "__main__":
         with open(user_config_file) as f:
             ssh_config.parse(f)
 
-    options = ssh_config.lookup("ews")
+    options = ssh_config.lookup(SSH_ALIAS)
     cfg = {'hostname': options['hostname'], 'username': options["user"]}
 
     user_config = ssh_config.lookup(cfg['hostname'])

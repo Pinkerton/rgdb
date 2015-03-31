@@ -1,14 +1,14 @@
 # rgdb
-Seamless remote debugging with gdb for CS 225
+:star: Seamless remote debugging with gdb for CS 225
 
-##:star: tl;dr##
+##Description##
 Sometimes the verison of gdb shipped with OSX isn't very helpful, and manually committing and pushing code to school workstations is slow. So, this script does it for you.
 
 There's a couple ways to run this script. The easiest is probably to copy `rgdb.py` to your `cs225` or specific MP/lab directory, [make it executable, and add it to your path](http://stackoverflow.com/questions/15587877/run-a-python-script-in-terminal-without-the-python-command). 
 
 Then, run gdb remotely with some variation of `python rgdb.py mp5` or `rgdb.py mp5`. It'll commit your code and launch an ssh session that pulls the most recent version, makes it, and starts gdb.
 
-You'll probably only find this useful if you like developing locally, but it's for debugging my segfault-ridden code.
+You'll probably only find this useful if you like developing locally, but it's been helpful for debugging my segfault-ridden code.
 
 **Known issue:** exiting out of the remote gdb session is a bit of a pain. This could probably be solved in code, but **CTRL+D** twice works well enough.
 
@@ -23,7 +23,7 @@ Host ews
 ```
 [This guide](http://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/) explains how to set up password-less ssh authentication on OSX.
 
-Also, change `EWS_PATH` in `rgdb.py` to reflect where your `cs225` directory lives on EWS. By default, it's `~/Documents/cs225`.
+Also, change `EWS_PATH` and in `rgdb.py` to reflect where your `cs225` directory lives on EWS. By default, it's `~/Documents/cs225`. If you have a pre-existing SSH alias, also be sure to update `SSH_ALIAS`.
 
 ##Details##
 
